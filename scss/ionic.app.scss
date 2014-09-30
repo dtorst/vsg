@@ -1,0 +1,238 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #4a87ee !default;
+$calm:                            #43cee6 !default;
+$balanced:                        #66cc33 !default;
+$energized:                       #f0b840 !default;
+$assertive:                       #ef4e3a !default;
+$royal:                           #8a6de9 !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+/* Empty. Add your own CSS if you like */
+/*
+.slider-pager {
+position: fixed !important;
+bottom: 120px !important;
+}
+*/
+.slider {
+height:100% !important;
+}
+/*
+.slider-img {
+  padding-top:50px;
+}
+*/
+.slider-img > img {
+  max-height:100%;
+}
+
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+
+.artichokes {
+  float:right;
+  width:100px;
+  height:22px;
+}
+
+.main-title {
+  float:left;
+  font-weight:700;
+  font-size:1.2em;
+  max-width:140px;
+  margin:7px 15px 0px 5px;
+}
+
+.badges
+{
+  background-color: #eee;
+  margin:0px 3px 0px 3px;
+  font-size: 11px;
+  color: #ccc;
+  border-radius: 3px;
+  border:1px solid #ddd;
+  text-align: center;
+}
+
+.badges-active {
+  background-color: #66cc33;
+  margin:0px 3px 0px 3px;
+  font-size: 11px;
+  color: #fff;
+  border-radius: 3px;
+  border:1px solid #fff;
+  text-align: center;
+}
+
+.image-container { width: 110%; height: 110px; overflow: hidden; top:0px; margin-left:-10px; padding:0; margin-top:-10px;}
+.image-container img { width: 100%; padding:0; margin:0;}
+
+
+.photo-page {
+  max-width:100%;
+}
+
+.slider {
+  height:100%;
+}
+
+.slider-pager .slider-pager-page {
+  color:#fff !important;
+}
+
+a {
+  color: #0882f0;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Removes the dark touch outlines on links */
+}
+
+.artichoke1 {
+  background-image: url("images/Layer 0.png");
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100px;
+  height: 22px;
+  z-index: 1;
+}
+
+#map {
+  width: 100%;
+  border:1px solid black;
+  height: 90%;
+}
+
+.scroll {
+  height: 100%;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 5px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert h4 {
+  margin-top: 0;
+  color: inherit;
+}
+.alert .slink {
+  font-weight: bold;
+}
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+.alert > p + p {
+  margin-top: 5px;
+}
+.alert-dismissable,
+.alert-dismissible {
+  padding-right: 35px;
+}
+.alert-dismissable .close,
+.alert-dismissible .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  color: inherit;
+}
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+    -webkit-animation-name: slideOut;
+    -webkit-animation-iteration-count: once;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-duration: 500ms;  
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    animation-name: slideOut;
+    animation-iteration-count: once;
+    animation-timing-function: ease-in;
+    animation-duration: 500ms;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+.alert-success hr {
+  border-top-color: #c9e2b3;
+}
+.alert-success .alert-link {
+  color: #2b542c;
+}
+.alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+.alert-info hr {
+  border-top-color: #a6e1ec;
+}
+.alert-info .alert-link {
+  color: #245269;
+}
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+.alert-warning hr {
+  border-top-color: #f7e1b5;
+}
+.alert-warning .alert-link {
+  color: #66512c;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.alert-danger hr {
+  border-top-color: #e4b9c0;
+}
+.alert-danger .alert-link {
+  color: #843534;
+}
+
+
+@keyframes slideOut {
+    0% {
+        margin-top: 0;
+    }
+    100% {
+        margin-top: -50px;
+    }
+}
+
+@-webkit-keyframes slideOut {
+    0% {
+        margin-top: 0;
+    }
+    100% {
+        margin-top: -50px;
+    }
+}
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";

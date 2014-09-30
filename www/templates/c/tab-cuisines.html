@@ -1,0 +1,10 @@
+<ion-view title="Cuisines">
+  <ion-content class="has-header">
+    <ion-list>
+      <ion-item ng-repeat="cuisine in cuisines" type="item-text-wrap" href="#/tab/cuisine/{{cuisine.cuisineId}}">
+        {{cuisine.cuisineName}}
+        <span class="badge badge-positive">{{cuisine.count}}</span>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,8 @@
+<ion-view title="Map of {{restaurant.details.name}}">
+<ion-nav-buttons side="right">
+  <button class="button button-icon icon ion-share" style="border:none;"  ng-click="openMaps(restaurant.details.street1, restaurant.details.city, restaurant.details.state, restaurant.details.zip, restauraunt.details.country)"></button>
+</ion-nav-buttons>
+  <ion-content has-header="true" padding="false" scroll="false">
+<div class="map"><img ng-src="http://maps.googleapis.com/maps/api/staticmap?center={{restaurant.details.lat}},{{restaurant.details.lng}}&zoom=14&size=320x500&maptype=roadmap&markers=color:green%7Clabel:%7C{{ restaurant.details.street1 }},{{ restaurant.details.city }}{{ restaurant.details.state }}{{restaurant.country}}&key=AIzaSyAK3vA3qRyKt-hA7IYspW57ChRQiUtViHw" \></div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,77 @@
+<ion-view title="Discover">
+
+  <ion-content>
+
+  <div class="item item-input-inset" style="background-color:#eee;">
+    <label class="item-input-wrapper" style="background-color:#fff;color:#000;">
+        <i class="icon ion-search placeholder-icon" style="color:#000;"></i>
+      <input type="text" placeholder="Search by name, city, or keywords" data-ng-model="query">
+    </label>
+  </div>
+
+
+      <ion-list>
+      <div>
+      <ion-item class="item item-divider"
+          ng-click="toggleGroup1(group)"
+          ng-class="{active: isGroup1Shown(group)}" style="background-color:#eee;">
+      <i class="icon" ng-class="isGroup1Shown(group) ? 'ion-minus' : 'ion-plus'"></i>&nbsp;
+      Vegetarian Rating</ion-item>
+<li class="item item-checkbox item-accordion" ng-show="isGroup1Shown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="useRating[1]"></label>1 artichoke</li>
+<li class="item item-checkbox item-accordion" ng-show="isGroup1Shown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="useRating[2]"></label>2 artichokes</li>
+<li class="item item-checkbox item-accordion" ng-show="isGroup1Shown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="useRating[3]"></label>3 artichokes</li>
+<li class="item item-checkbox item-accordion" ng-show="isGroup1Shown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="useRating[4]"></label>4 artichokes</li>
+<li class="item item-checkbox item-accordion" ng-show="isGroup1Shown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="useRating[5]"></label>5 artichokes</li>
+<li class="item item-checkbox item-accordion" ng-show="isGroup1Shown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="useRating[100]"></label>100% Vegetarian</li>
+</div>
+
+<div>
+      <ion-item class="item item-divider"
+          ng-click="toggleGroup(group)"
+          ng-class="{active: isGroupShown(group)}" style="background-color:#eee;">
+          <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>&nbsp;
+          Price</ion-item>
+
+<li class="item item-checkbox item-accordion" ng-show="isGroupShown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="usePrice[1]"></label>$</li>
+<li class="item item-checkbox item-accordion" ng-show="isGroupShown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="usePrice[2]"></label>$$</li>
+<li class="item item-checkbox item-accordion" ng-show="isGroupShown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="usePrice[3]"></label>$$$</li>
+<li class="item item-checkbox item-accordion" ng-show="isGroupShown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="usePrice[4]"></label>$$$$</li>
+</div>
+
+      <div>
+      <ion-item class="item item-divider"
+          ng-click="toggleGroup2(group)"
+          ng-class="{active: isGroup2Shown(group)}" style="background-color:#eee;">
+      <i class="icon" ng-class="isGroup2Shown(group) ? 'ion-minus' : 'ion-plus'"></i>&nbsp;
+      Options</ion-item>
+<li class="item item-checkbox item-accordion" ng-show="isGroup2Shown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="useLocal[1]"></label>Local</li>
+<li class="item item-checkbox item-accordion" ng-show="isGroup2Shown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="useGlutenFree[1]"></label>Gluten-Free</li>
+<li class="item item-checkbox item-accordion" ng-show="isGroup2Shown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="useOrganic[1]"></label>Organic</li>
+<li class="item item-checkbox item-accordion" ng-show="isGroup2Shown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="useVegan[1]"></label>Vegan</li>
+<li class="item item-checkbox item-accordion" ng-show="isGroup2Shown(group)"><label class="checkbox checkbox-balanced"><input type="checkbox" ng-model="useHappyHour[1]"></label>Happy Hour</li>
+</div>
+
+      </ion-list>
+
+    <ion-list ng-controller="LoadExploreCtrl">
+
+<ion-item class="item-avatar" style="padding-right:0px;margin-right:-10px;" animation="slide-in-up" ng-repeat="restaurant in filteredRestaurants | filter: query | limitTo:totalDisplayed" type="item-text-wrap" href="#/tab/restaurant/{{restaurant.id}}">
+        <img ng-if="restaurant.photo" ng-src="http://api.veggiesetgo.com/pics/{{ restaurant.photo }}" width="100" height="100" style="max-width:50px;max-height:50px;top:20px;">
+        <img ng-if="!restaurant.photo" ng-src="img/icon.jpg" width="100" height="100" style="max-width:50px;max-height:50px;top:20px;">
+    <div class="row" style="width:100%;padding:0px 0px 0px 10px;margin:0px;"><div class="col" style="padding:0px;margin:0px;">
+        <p><strong>{{restaurant.name}}</strong></p></div></div>
+    <div class="row" style="padding:0px 0px 0px 10px;margin:0px;"><div class="col" style="padding:0px;margin:0px;"><p style="font-size:0.8em;">{{restaurant.street1}}, {{restaurant.street2}} {{restaurant.city}}, {{restaurant.state}} {{restaurant.country}}</p>
+    </div></div>
+    <div class="row" style="padding:0px 0px 0px 10px;margin:0px;">
+      <div class="col" style="padding:0px;margin:0px;"><p style="font-size:0.8em;"><span ng-if="restaurant.distance">{{restaurant.distance}} miles away&nbsp;&nbsp;</span><span ng-if="restaurant.price">{{restaurant.price}}&nbsp;&nbsp;</span><span style="position:relative;top:2px;"><img style="height:15px;" ng-src="img/artichokes/15/artichoke-{{ restaurant.rating }}@2x.png"/></span></p></div>
+    </div>
+      </ion-item>
+
+      <ion-item>
+      <button ng-if="!noMoreEntries" class="button button-block button-stable" ng-click="loadMore()">
+  Load More
+</button>
+</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

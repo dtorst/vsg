@@ -1,0 +1,11 @@
+<ion-view title="Photos of {{ restaurant.details.name }}">
+  <ion-content class="has-header padding" scroll="false" style="background-color:#222;padding:0px;margin:0px;">
+  <div ng-if='restaurant.photos.length > 0' style="height:100%;">
+<ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="true">
+  <ion-slide ng-repeat="photo in restaurant.photos">
+    <div class="slider-img"><img ng-src="http://api.veggiesetgo.com/pics/{{ photo.url }}" style="width:100%;"></div>
+  </ion-slide>
+</ion-slide-box>
+</div>
+</ion-content>
+</ion-view>
