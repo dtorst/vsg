@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.veggiesetgo.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Veggie Set Go</name>
-  <description>
-        An Ionic Framework and Cordova project.
+    <name>VeggieSetGo</name>
+    <description>
+        VeggieSetGo is where veggie lovers and omnivores can find restaurants to dine out together – anywhere.
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+    <author email="dave@mapsandlegends.co" href="http://www.veggiesetgo.com/">
+      Veggie Set Go
     </author>
   <content src="index.html"/>
   <access origin="*"/>
@@ -15,5 +15,8 @@
   <preference name="BackupWebStorage" value="none"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
+  </feature>
+  <feature name="Geolocation">
+    <param name="ios-package" value="CDVLocation" />
   </feature>
 </widget>
