@@ -1,29 +1,5 @@
 angular.module('starter.services', ['ngResource'])
 
-/**
- * A simple example service that returns some data.
- */
-.factory('Friends', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var friends = [
-    { id: 0, name: 'Scruff McGruff' },
-    { id: 1, name: 'G.I. Joe' },
-    { id: 2, name: 'Miss Frizzle' },
-    { id: 3, name: 'Ash Ketchum' }
-  ];
-
-  return {
-    all: function() {
-      return friends;
-    },
-    get: function(friendId) {
-      // Simple index lookup
-      return friends[friendId];
-    }
-  }
-})
 
 .factory('DataService', function($resource) {
 
@@ -53,4 +29,44 @@ var Regions = $resource('http://api.veggiesetgo.com/cuisines');
 
 .factory('myCacheA', function ($cacheFactory) {
         return $cacheFactory('myDataA');
+})
+
+.factory('GeoLocService', function($q) {
+    
+    var latLong = null;
+    var latitude = null;
+    var longitude = null;
+    
+    var getSavedLatLong = function() {
+        return [latitude, longitude];
+    };
+
+    var getLatLong = function(refresh) {
+        var deferred = $q.defer();
+        if( latLong === null || refresh ) {
+            console.log('Getting lat long');
+            navigator.geolocation.getCurrentPosition(function(pos) {
+                latLong =  { 'lat' : pos.coords.latitude, 'long' : pos.coords.longitude }
+                latitude = pos.coords.latitude;
+                longitude = pos.coords.longitude
+                console.log("from service: new lat " + latitude + ", new long " + longitude);
+                deferred.resolve(latLong);
+
+            }, function(error) {
+                console.log('Got an error:');
+                console.log(error);
+                latLong = null
+                
+                deferred.reject('Failed to Get Lat Long')
+
+            }, {timeout: 10000, enableHighAccuracy: true});
+            
+        }  else {
+            deferred.resolve(latLong);
+        }
+        return deferred.promise;
+    };      
+    return {
+        getLatLong : getLatLong
+    }
 });
