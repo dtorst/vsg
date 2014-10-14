@@ -407,11 +407,10 @@ $scope.codeAddress = function() {
   geocoder.geocode( { 'address': address}, function(results, status) {
 
     if (status == google.maps.GeocoderStatus.OK) {
-      $scope.newLatitude = results[0].geometry.location.k;
-      $scope.newLongitude = results[0].geometry.location.B;
-      console.log(results);
+      $scope.latLng = { 'lat' : results[0].geometry.location.k, 'long' : results[0].geometry.location.B };
+      console.log($scope.latLng);
     var Locations = $resource('http://api.veggiesetgo.com/nearby/:lat/:lng');
-  $scope.restaurants = Locations.query({lat: $scope.newLatitude, lng: $scope.newLongitude});
+  $scope.restaurants = Locations.query({lat: $scope.latLng.lat, lng: $scope.latLng.long});
   $scope.restaurants.$promise.then(function (result) {
     $scope.restaurants = result;
     $ionicLoading.hide();
