@@ -354,12 +354,12 @@ $scope.restaurant = Restaurant.get({restaurantId: $stateParams.restaurantId});
 })
 
 
-.controller('MapCtrl', function($scope, $ionicPlatform, $rootScope, $timeout, $resource, $cordovaGeolocation, myCacheA, $ionicPopup, $ionicLoading, GeoLocService) {
+.controller('MapCtrl', function($scope, $ionicPlatform, $rootScope, $timeout, $resource, myCacheA, $ionicPopup, $ionicLoading, GeoLocService) {
 
 // main geolocation function
 var cacheA = myCacheA.get('myDataA');
 
-  $ionicPlatform.ready(function() {
+  $scope.locate = function() {
     if (!cacheA) {
     $scope.geoLocation = {status: "LOCATING"}
     $scope.loading = $ionicLoading.show({
@@ -387,8 +387,12 @@ var cacheA = myCacheA.get('myDataA');
   } else {
       $scope.restaurants = cacheA;
   }
-  });
+  };
 
+
+  $ionicPlatform.ready( function() {
+    $scope.locate();
+  });
 
 
 $scope.codeAddress = function() {
@@ -440,7 +444,7 @@ $scope.codeAddress = function() {
       animation: 'fade-in',
       showBackdrop: true
     });
-        $rootScope.latLng = latLong;
+        $scope.latLng = latLong;
         $scope.geoLocation = {status: "AVAILABLE"}
         console.log(latLong);
         var Locations = $resource('http://api.veggiesetgo.com/nearby/:lat/:lng');
