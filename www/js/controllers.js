@@ -371,10 +371,11 @@ var cacheA = myCacheA.get('myDataA');
       function(latLong) {
         $rootScope.latLng = latLong;
         $scope.geoLocation = {status: "AVAILABLE"}
-        console.log("here's the current object: ");
-        console.log($scope.latLng);
+        console.log("initial location coordinates: ");
+        console.log("lat: " + $scope.latLng.lat);
+        console.log("long: " + $scope.latLng.long);
         var Locations = $resource('http://api.veggiesetgo.com/nearby/:lat/:lng');
-        $scope.restaurants = Locations.query({lat: latLong.lat, lng: latLong.long});
+        $scope.restaurants = Locations.query({lat: $scope.latLng.lat, lng: $scope.latLng.long});
   $scope.restaurants.$promise.then(function (result) {
     $scope.restaurants = result;
     $ionicLoading.hide();
@@ -437,18 +438,20 @@ $scope.codeAddress = function() {
 
   $scope.findAgain = function() {
     $scope.geoLocation = {status: "LOCATING"}
-    GeoLocService.getLatLong().then(
-      function(latLong) {
     $scope.loading = $ionicLoading.show({
       template: '<i class="icon ion-loading-c"></i>',
       animation: 'fade-in',
       showBackdrop: true
     });
+    GeoLocService.getLatLong().then(
+      function(latLong) {
         $scope.latLng = latLong;
         $scope.geoLocation = {status: "AVAILABLE"}
-        console.log(latLong);
+        console.log("new location coordinates: ");
+        console.log("lat: " + $scope.latLng.lat);
+        console.log("long: " + $scope.latLng.long);
         var Locations = $resource('http://api.veggiesetgo.com/nearby/:lat/:lng');
-        $scope.restaurants = Locations.query({lat: latLong.lat, lng: latLong.long});
+        $scope.restaurants = Locations.query({lat: $scope.latLng.lat, lng: $scope.latLng.long});
   $scope.restaurants.$promise.then(function (result) {
     $scope.restaurants = result;
     $ionicLoading.hide();

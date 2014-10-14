@@ -38,13 +38,13 @@ var Regions = $resource('http://api.veggiesetgo.com/cuisines');
     var longitude = null;
     
     var getSavedLatLong = function() {
-        return [latitude, longitude];
+        return [latLong.lat, latLong.long];
     };
 
     var getLatLong = function() {
         var deferred = $q.defer();
 //        if( latLong === null || refresh ) {
-            console.log('Getting lat long');
+            console.log('Getting lat long from service');
             navigator.geolocation.getCurrentPosition(function(pos) {
                 latLong =  { 'lat' : pos.coords.latitude, 'long' : pos.coords.longitude }
                 latitude = pos.coords.latitude;
@@ -61,9 +61,9 @@ var Regions = $resource('http://api.veggiesetgo.com/cuisines');
 
             }, {timeout: 10000, enableHighAccuracy: true});
             
-  //      }  else {
-  //          deferred.resolve(latLong);
-  //      }
+//        }  else {
+//            deferred.resolve(latLong);
+//        }
         return deferred.promise;
     };      
     return {
